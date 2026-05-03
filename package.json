@@ -17,13 +17,13 @@
   ],
   "license": "MIT",
   "author": "rickydavinci",
-  "homepage": "https://github.com/rickydavinci/gitmoji-commits#readme",
+  "homepage": "https://github.com/RickNoutat/gitmoji-commits#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rickydavinci/gitmoji-commits.git"
+    "url": "git+https://github.com/RickNoutat/gitmoji-commits.git"
   },
   "bugs": {
-    "url": "https://github.com/rickydavinci/gitmoji-commits/issues"
+    "url": "https://github.com/RickNoutat/gitmoji-commits/issues"
   },
   "type": "module",
   "engines": {

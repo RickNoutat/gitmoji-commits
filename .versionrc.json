@@ -53,9 +53,9 @@
       "hidden": true
     }
   ],
-  "commitUrlFormat": "https://github.com/rickydavinci/gitmoji-commits/commit/{{hash}}",
-  "compareUrlFormat": "https://github.com/rickydavinci/gitmoji-commits/compare/{{previousTag}}...{{currentTag}}",
-  "issueUrlFormat": "https://github.com/rickydavinci/gitmoji-commits/issues/{{id}}",
+  "commitUrlFormat": "https://github.com/RickNoutat/gitmoji-commits/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/RickNoutat/gitmoji-commits/compare/{{previousTag}}...{{currentTag}}",
+  "issueUrlFormat": "https://github.com/RickNoutat/gitmoji-commits/issues/{{id}}",
   "userUrlFormat": "https://github.com/{{user}}",
   "bumpFiles": [
     {

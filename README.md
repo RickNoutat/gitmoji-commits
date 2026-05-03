@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/gitmoji-commits.svg)](https://www.npmjs.com/package/gitmoji-commits)
 [![npm downloads](https://img.shields.io/npm/dm/gitmoji-commits.svg)](https://www.npmjs.com/package/gitmoji-commits)
-[![CI](https://github.com/rickydavinci/gitmoji-commits/actions/workflows/ci.yml/badge.svg)](https://github.com/rickydavinci/gitmoji-commits/actions/workflows/ci.yml)
+[![CI](https://github.com/RickNoutat/gitmoji-commits/actions/workflows/ci.yml/badge.svg)](https://github.com/RickNoutat/gitmoji-commits/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Zero-config CLI to set up a complete **conventional commits + gitmoji** workflow in any project: interactive commit prompts, message validation, git hooks, automated CHANGELOG and semantic versioning.
@@ -129,7 +129,7 @@ Yes — edit the generated `commitlint.config.js` after setup. The full schema i
 
 ## Contributing
 
-Issues and PRs welcome. Repo: [github.com/rickydavinci/gitmoji-commits](https://github.com/rickydavinci/gitmoji-commits).
+Issues and PRs welcome. Repo: [github.com/RickNoutat/gitmoji-commits](https://github.com/RickNoutat/gitmoji-commits).
 
 ## License
 
