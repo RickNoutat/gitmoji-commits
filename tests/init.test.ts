@@ -1,14 +1,38 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 import { mkdtemp, rm, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execa } from 'execa';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const CLI = join(__dirname, '..', 'dist', 'cli.js');
+
+async function runCli(
+  args: string[],
+): Promise<{ exitCode: number; stdout: string; stderr: string }> {
+  const result = await execa('node', [CLI, ...args], { reject: false });
+  return {
+    exitCode: result.exitCode ?? 1,
+    stdout: typeof result.stdout === 'string' ? result.stdout : '',
+    stderr: typeof result.stderr === 'string' ? result.stderr : '',
+  };
+}
+
+function expectSuccess(result: { exitCode: number; stdout: string; stderr: string }): void {
+  if (result.exitCode !== 0) {
+    throw new Error(
+      `CLI exited with code ${result.exitCode}\n--- stdout ---\n${result.stdout}\n--- stderr ---\n${result.stderr}`,
+    );
+  }
+}
 
 async function setupTmpProject(extraFiles: Record<string, string> = {}): Promise<string> {
   const dir = await mkdtemp(join(tmpdir(), 'gitmoji-init-'));
   await execa('git', ['init', '-q'], { cwd: dir });
+  await execa('git', ['config', 'user.email', 'test@example.com'], { cwd: dir });
+  await execa('git', ['config', 'user.name', 'test'], { cwd: dir });
   await writeFile(join(dir, 'package.json'), JSON.stringify({ name: 'tmp', version: '0.0.0' }, null, 2));
   for (const [path, content] of Object.entries(extraFiles)) {
     const full = join(dir, path);
@@ -31,10 +55,7 @@ describe('gitmoji-init e2e (--yes mode)', () => {
 
   it('sets up everything in a clean project', async () => {
     tmpDir = await setupTmpProject();
-    const { exitCode } = await execa('node', [CLI, '--yes', '--pm', 'npm', '--cwd', tmpDir], {
-      reject: false,
-    });
-    expect(exitCode).toBe(0);
+    expectSuccess(await runCli(['--yes', '--pm', 'npm', '--cwd', tmpDir]));
 
     const pkg = await readJson(join(tmpDir, 'package.json'));
     expect(pkg.scripts).toMatchObject({
@@ -59,12 +80,7 @@ describe('gitmoji-init e2e (--yes mode)', () => {
 
   it('uses French templates with --lang fr', async () => {
     tmpDir = await setupTmpProject();
-    const { exitCode } = await execa(
-      'node',
-      [CLI, '--yes', '--pm', 'npm', '--lang', 'fr', '--cwd', tmpDir],
-      { reject: false },
-    );
-    expect(exitCode).toBe(0);
+    expectSuccess(await runCli(['--yes', '--pm', 'npm', '--lang', 'fr', '--cwd', tmpDir]));
     const commitlint = await readFile(join(tmpDir, 'commitlint.config.js'), 'utf8');
     expect(commitlint).toContain('Nouvelle fonctionnalité');
   }, 120_000);
@@ -80,22 +96,14 @@ describe('gitmoji-init e2e (--yes mode)', () => {
         2,
       ),
     );
-    const { exitCode } = await execa('node', [CLI, '--yes', '--pm', 'npm', '--cwd', tmpDir], {
-      reject: false,
-    });
-    expect(exitCode).toBe(0);
+    expectSuccess(await runCli(['--yes', '--pm', 'npm', '--cwd', tmpDir]));
     const pkg = await readJson(pkgPath);
     expect((pkg.scripts as Record<string, string>).commit).toBe('my-custom-commit');
   }, 120_000);
 
   it('skips full preset files in minimal preset', async () => {
     tmpDir = await setupTmpProject();
-    const { exitCode } = await execa(
-      'node',
-      [CLI, '--yes', '--pm', 'npm', '--preset', 'minimal', '--cwd', tmpDir],
-      { reject: false },
-    );
-    expect(exitCode).toBe(0);
+    expectSuccess(await runCli(['--yes', '--pm', 'npm', '--preset', 'minimal', '--cwd', tmpDir]));
     const pkg = await readJson(join(tmpDir, 'package.json'));
     expect((pkg.scripts as Record<string, string>).commit).toBe('git-cz');
     expect((pkg.scripts as Record<string, string>).release).toBeUndefined();
@@ -109,10 +117,7 @@ describe('gitmoji-init e2e (--yes mode)', () => {
       join(tmpDir, 'package.json'),
       JSON.stringify({ name: 'esm-tmp', version: '0.0.0', type: 'module' }, null, 2),
     );
-    const { exitCode } = await execa('node', [CLI, '--yes', '--pm', 'npm', '--cwd', tmpDir], {
-      reject: false,
-    });
-    expect(exitCode).toBe(0);
+    expectSuccess(await runCli(['--yes', '--pm', 'npm', '--cwd', tmpDir]));
     const cjs = await readFile(join(tmpDir, 'commitlint.config.cjs'), 'utf8');
     expect(cjs).toContain('@commitlint/config-conventional');
     await expect(readFile(join(tmpDir, 'commitlint.config.js'), 'utf8')).rejects.toThrow();
@@ -120,12 +125,7 @@ describe('gitmoji-init e2e (--yes mode)', () => {
 
   it('backs up existing commitlint.config.js when --force is set', async () => {
     tmpDir = await setupTmpProject({ 'commitlint.config.js': '// old config\n' });
-    const { exitCode } = await execa(
-      'node',
-      [CLI, '--yes', '--force', '--pm', 'npm', '--cwd', tmpDir],
-      { reject: false },
-    );
-    expect(exitCode).toBe(0);
+    expectSuccess(await runCli(['--yes', '--force', '--pm', 'npm', '--cwd', tmpDir]));
     const bak = await readFile(join(tmpDir, 'commitlint.config.js.bak'), 'utf8');
     expect(bak).toBe('// old config\n');
     const fresh = await readFile(join(tmpDir, 'commitlint.config.js'), 'utf8');
