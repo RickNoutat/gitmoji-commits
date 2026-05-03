@@ -1,6 +1,6 @@
 {
   "name": "gitmoji-commits",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Zero-config CLI to set up conventional commits + gitmoji + commitlint + husky + automated CHANGELOG in any project. Works with pnpm, npm, yarn and bun.",
   "keywords": [
     "gitmoji",
