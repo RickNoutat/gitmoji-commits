@@ -1,10 +1,23 @@
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Command } from 'commander';
+import updateNotifier from 'update-notifier';
 import { runInit } from './commands/init.js';
 import type { Lang, PackageManager, Preset } from './types.js';
 
 const VALID_LANGS: Lang[] = ['en', 'fr'];
 const VALID_PMS: PackageManager[] = ['pnpm', 'npm', 'yarn', 'bun'];
 const VALID_PRESETS: Preset[] = ['minimal', 'full'];
+
+const pkg = JSON.parse(
+  readFileSync(join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json'), 'utf-8'),
+) as { name: string; version: string };
+
+updateNotifier({ pkg }).notify({
+  message:
+    'Update available {currentVersion} → {latestVersion}\nRun npm update -g {packageName} to update',
+});
 
 function parseEnum<T extends string>(name: string, allowed: readonly T[]): (value: string) => T {
   return (value) => {
@@ -20,7 +33,7 @@ const program = new Command();
 program
   .name('gitmoji-init')
   .description('Set up conventional commits + gitmoji + commitlint + husky in any project.')
-  .version('0.0.0');
+  .version(pkg.version);
 
 program
   .command('init', { isDefault: true })
