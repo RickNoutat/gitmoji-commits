@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [0.3.0](https://github.com/RickNoutat/gitmoji-commits/compare/v0.2.0...v0.3.0) (2026-05-05)
+
+### 📝 Documentation
+
+* :memo: fix markdownlint violations in README and CHANGELOG ([2e2e6df](https://github.com/RickNoutat/gitmoji-commits/commit/2e2e6dfa008c6ef3000d917dd4dc81f9163046ce))
+
+### 📦 Build System
+
+* :wrench: add markdownlint-cli2 with auto-fix postchangelog hook ([986b737](https://github.com/RickNoutat/gitmoji-commits/commit/986b73720f891fe5226b6c422dc9baf19b52d942))
+
 ## [0.2.0](https://github.com/RickNoutat/gitmoji-commits/compare/v0.1.2...v0.2.0) (2026-05-05)
 
 ### ✨ Features
