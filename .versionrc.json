@@ -66,5 +66,8 @@
   "skip": {
     "commit": false,
     "tag": false
+  },
+  "scripts": {
+    "postchangelog": "markdownlint-cli2 --fix CHANGELOG.md"
   }
 }
