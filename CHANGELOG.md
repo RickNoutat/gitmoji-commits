@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [Conventional Commits](https://www.conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://github.com/RickNoutat/gitmoji-commits/compare/v0.1.2...v0.2.0) (2026-05-05)
+
+
+### ✨ Features
+
+* :sparkles: notify users when a new version is available ([5423b39](https://github.com/RickNoutat/gitmoji-commits/commit/5423b39ca449fa7031e24b339f5851dfc4a9fcc0))
+
 ## 0.1.2 (2026-05-03)
 
 
