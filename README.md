@@ -30,7 +30,7 @@ That's it. Answer a few prompts (or pass `--yes` to skip), and your repo is conf
 ## What it sets up
 
 | Tool | What it does |
-|---|---|
+| --- | --- |
 | [`commitizen`](https://github.com/commitizen/cz-cli) + [`cz-git`](https://cz-git.qbb.sh/) | Interactive commit menu with gitmoji |
 | [`@commitlint/cli`](https://commitlint.js.org/) + `config-conventional` | Validates commit message format |
 | [`husky`](https://typicode.github.io/husky/) | Git hooks runner (auto-rejects bad commits) |
@@ -59,7 +59,7 @@ git push --follow-tags origin main
 
 ## CLI options
 
-```
+```text
 gitmoji-init [options]
 
 Options:
@@ -89,13 +89,14 @@ pnpm dlx gitmoji-commits --force
 ## Presets
 
 | Preset | Includes |
-|---|---|
+| --- | --- |
 | `full` *(default)* | All 6 tools — interactive prompts, validation, hooks, CHANGELOG, versioning |
 | `minimal` | Only `commitizen` + `cz-git` — interactive prompts only, no validation/release |
 
 ## Monorepo support
 
 `gitmoji-commits` auto-detects monorepos using:
+
 - `pnpm-workspace.yaml` (pnpm workspaces)
 - `workspaces` field in root `package.json` (npm/yarn workspaces)
 - `turbo.json` (Turborepo)

@@ -4,29 +4,24 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ## [0.2.0](https://github.com/RickNoutat/gitmoji-commits/compare/v0.1.2...v0.2.0) (2026-05-05)
 
-
 ### ✨ Features
 
 * :sparkles: notify users when a new version is available ([5423b39](https://github.com/RickNoutat/gitmoji-commits/commit/5423b39ca449fa7031e24b339f5851dfc4a9fcc0))
 
 ## 0.1.2 (2026-05-03)
 
-
 ### ✨ Features
 
 * :sparkles: initial release of gitmoji-commits CLI ([89fedd7](https://github.com/RickNoutat/gitmoji-commits/commit/89fedd7425c2ed2502921e8dbe52d90c81657350))
-
 
 ### ✅ Tests
 
 * :white_check_mark: fix __dirname in ESM tests + add stderr diagnostics ([e0dbf6c](https://github.com/RickNoutat/gitmoji-commits/commit/e0dbf6ccc69c6026cc37ae02a8be17cb95f7a261))
 
-
 ### 🎡 Continuous Integration
 
 * :ferris_wheel: build before test in release workflow ([7e20faf](https://github.com/RickNoutat/gitmoji-commits/commit/7e20faf923caf9c75f5902dd55ccba2123eeebe6))
 * :ferris_wheel: fix pnpm version conflict in workflows ([3509b11](https://github.com/RickNoutat/gitmoji-commits/commit/3509b11de65126f5826d897cc5b7f6ae36657759))
-
 
 ### 🔨 Chores
 
@@ -36,21 +31,17 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ## 0.1.1 (2026-05-03)
 
-
 ### ✨ Features
 
 * :sparkles: initial release of gitmoji-commits CLI ([89fedd7](https://github.com/RickNoutat/gitmoji-commits/commit/89fedd7425c2ed2502921e8dbe52d90c81657350))
-
 
 ### ✅ Tests
 
 * :white_check_mark: fix __dirname in ESM tests + add stderr diagnostics ([e0dbf6c](https://github.com/RickNoutat/gitmoji-commits/commit/e0dbf6ccc69c6026cc37ae02a8be17cb95f7a261))
 
-
 ### 🎡 Continuous Integration
 
 * :ferris_wheel: fix pnpm version conflict in workflows ([3509b11](https://github.com/RickNoutat/gitmoji-commits/commit/3509b11de65126f5826d897cc5b7f6ae36657759))
-
 
 ### 🔨 Chores
 
@@ -59,16 +50,13 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ## 0.1.0 (2026-05-03)
 
-
 ### ✨ Features
 
 * :sparkles: initial release of gitmoji-commits CLI ([89fedd7](https://github.com/RickNoutat/gitmoji-commits/commit/89fedd7425c2ed2502921e8dbe52d90c81657350))
 
-
 ### 🎡 Continuous Integration
 
 * :ferris_wheel: fix pnpm version conflict in workflows ([3509b11](https://github.com/RickNoutat/gitmoji-commits/commit/3509b11de65126f5826d897cc5b7f6ae36657759))
-
 
 ### 🔨 Chores
 
